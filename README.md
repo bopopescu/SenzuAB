@@ -1,2 +1,2 @@
-# Senzu
+# SenzuAB
 APP de Control
