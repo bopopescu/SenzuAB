@@ -43,4 +43,4 @@ urlpatterns = [
     #url(r'^docs/', include('rest_framework_docs.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 
-] +urlpatternsAccount #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] +urlpatternsAccount + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
