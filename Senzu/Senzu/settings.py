@@ -131,9 +131,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'senzupy',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'USER': 'devab',
+        'PASSWORD': 'devab',
+        'HOST': '192.168.10.103',
         'PORT': '3306',
         'OPTIONS': {
             'sql_mode': 'TRADITIONAL',
