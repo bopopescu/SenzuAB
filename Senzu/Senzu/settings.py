@@ -185,11 +185,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#STATICFILES_DIRS = [
-#    os.path.join(BASE_DIR, "static"),
-#    '/var/www/html/Senzu/static/',
-#]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/html/Senzu/static/',
+]
 
-STATIC_ROOT = '/var/www/html/Senzu/static/'
+#STATIC_ROOT = '/var/www/html/Senzu/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
