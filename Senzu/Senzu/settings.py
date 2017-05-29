@@ -190,6 +190,6 @@ STATICFILES_DIRS = [
     '/var/www/html/Senzu/static/',
 ]
 
-STATIC_ROOT = '/static/'
+#STATIC_ROOT = '/var/www/html/Senzu/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
