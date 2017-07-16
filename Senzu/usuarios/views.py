@@ -24,6 +24,38 @@ class PacienteViewSet(viewsets.ModelViewSet):
     queryset = Paciente.objects.all()
     serializer_class = PacienteSerializer
 
+class EspecialidadViewSet(viewsets.ModelViewSet):
+    queryset = Especialidad.objects.all()
+    serializer_class = EspecialidadSerializer
+
+class MedicoViewSet(viewsets.ModelViewSet):
+    queryset = Medico.objects.all()
+    serializer_class = MedicoSerializer
+
+class SalaViewSet(viewsets.ModelViewSet):
+    queryset = Sala.objects.all()
+    serializer_class = SalaSerializer
+
+class PasilloViewSet(viewsets.ModelViewSet):
+    queryset = Pasillo.objects.all()
+    serializer_class = PasilloSerializer
+
+class HabitacionViewSet(viewsets.ModelViewSet):
+    queryset = Habitacion.objects.all()
+    serializer_class = HabitacionSerializer
+
+class Tipo_CitaViewSet(viewsets.ModelViewSet):
+    queryset = Tipo_Cita.objects.all()
+    serializer_class = Tipo_CitaSerializer
+
+class CitasViewSet(viewsets.ModelViewSet):
+    queryset = Citas.objects.all()
+    serializer_class = CitasSerializer
+
+class Consulta_MedicaViewSet(viewsets.ModelViewSet):
+    queryset = Consulta_Medica.objects.all()
+    serializer_class = Consulta_MedicaSerializer
+
 
 # obtener los datos del usuario al enviar el username
 class GetAUsuarioPorUsernameOemail(APIView):
