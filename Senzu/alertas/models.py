@@ -1,14 +1,18 @@
 from django.db import models
+from usuarios.my_user import Usuario
 
 # Create your models here.
 
 class Alertas(models.Model):
     mensaje = models.TextField()
-    usuario = models.CharField(max_length=80)
+    usuario = models.ForeignKey(Usuario)
     fecha_hora_mensaje = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
        return 'Alerta: ' + self.mensaje
+
+    def __str__(self):
+        return self.mensaje
 
     class Meta:
         verbose_name = "Alerta"

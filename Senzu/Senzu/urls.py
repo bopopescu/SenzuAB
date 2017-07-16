@@ -30,6 +30,8 @@ router = HybridRouter()
 
 # usuarios
 router.register(r'usuarios', UserViewSet)
+router.register(r'paciente', PacienteViewSet)
+router.register(r'entidad', EntidadViewSet)
 router.add_api_view("ObetenerUsuario", url(r'ObetenerUsuario', GetAUsuarioPorUsernameOemail.as_view(), name="ObetenerUsuario"))
 
 # Alertas

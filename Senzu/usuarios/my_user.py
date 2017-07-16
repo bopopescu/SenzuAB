@@ -99,7 +99,7 @@ class Usuario(AbstractUser, PermissionsMixin):
     def get_cedula(self):
         return self.cedula
     def __str__(self):
-        return self.cedula
+        return self.get_full_name() + " - " + self.get_cedula()
     def tiene_permisos(self,perm, obj=None):
         return True
     def tiene_permisos_en_el_modulo(self, app_label):

@@ -9,12 +9,20 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from usuarios.my_user import Usuario
+from usuarios.models import *
 
 # Create your views here.
+class EntidadViewSet(viewsets.ModelViewSet):
+    queryset = Entidad.objects.all()
+    serializer_class = EntidadSerializer
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UserSerializer
 
+class PacienteViewSet(viewsets.ModelViewSet):
+    queryset = Paciente.objects.all()
+    serializer_class = PacienteSerializer
 
 
 # obtener los datos del usuario al enviar el username

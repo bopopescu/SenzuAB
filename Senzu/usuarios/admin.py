@@ -17,6 +17,7 @@ class PacienteAdmin(admin.ModelAdmin):
 
 class EspecialidadAdmin(admin.ModelAdmin):
     models = Especialidad
+    list_display = ('especialidad',)
 
 class EntidadAdmin(admin.ModelAdmin):
     models = Entidad
@@ -25,15 +26,15 @@ class EntidadAdmin(admin.ModelAdmin):
 
 class SalaAdmin(admin.ModelAdmin):
     models = Sala
-    list_display = ('nombre',)
+    list_display = ('nombre','en_lugar',)
 
 class PasilloAdmin(admin.ModelAdmin):
     models = Pasillo
-    list_display = ('nombre',)
+    list_display = ('nombre','en_la_sala',)
 
 class HabitacionAdmin(admin.ModelAdmin):
     models = Habitacion
-    #list_display = ('nombre',)
+    #list_display = ('nombre','en_pasillo',)
 
 class TipoCitaAdmin(admin.ModelAdmin):
     models = Tipo_Cita
@@ -41,7 +42,7 @@ class TipoCitaAdmin(admin.ModelAdmin):
 
 class CitaAdmin(admin.ModelAdmin):
     models = Citas
-    list_display = ('id', 'fecha_creacion', 'cita_para',)
+    list_display = ('id', 'paciente', 'medico', 'fecha_creacion', 'cita_para',)
 
 class ConsultaMedicaAdmin(admin.ModelAdmin):
     models = Consulta_Medica

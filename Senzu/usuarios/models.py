@@ -15,8 +15,14 @@ class Entidad(models.Model):
     telefono = models.CharField(max_length=160)
     horario = models.TextField()
 
+    def getEntidad(self):
+        return self.nombre
+
     def __unicode__(self):
-       return 'Entidad: ' + self.nombre
+        return 'Entidad: ' + self.nombre
+
+    def __str__(self):
+        return self.getEntidad()
 
     class Meta:
         verbose_name = "Entidad"
@@ -28,10 +34,16 @@ class Especialidad(models.Model):
     def __unicode__(self):
        return 'Especialidad: ' + self.especialidad
 
+    def getEspecialidad(self):
+        return self.especialidad
+
+    def __str__(self):
+        return self.getEspecialidad()
+
     class Meta:
         verbose_name = "Especialidad"
         verbose_name_plural = "Especialidades"
-
+        ordering = ('especialidad',)
 
 class Medico(models.Model):
     GENERO = (
@@ -48,6 +60,12 @@ class Medico(models.Model):
 
     def __unicode__(self):
        return unicode(self.usuario)
+
+    def getMedico(self):
+        return self.usuario
+
+    def __str__(self):
+        return str(self.getMedico())
 
     class Meta:
         verbose_name = "Medico"
@@ -77,18 +95,30 @@ class Paciente(models.Model):
     def __unicode__(self):
        return unicode(self.usuario)
 
+    def getPaciente(self):
+        return self.usuario
+
+    def __str__(self):
+        return str(self.getPaciente())
+
     class Meta:
         verbose_name = "Paciente"
         verbose_name_plural = "Pacientes"
-
+        ordering = ('usuario',)
 
 class Sala(models.Model):
     nombre = models.CharField(max_length=160)
-    detalle = models.TextField(max_length=300)
+    detalle = models.TextField(max_length=300,null=True,blank=True,)
     en_lugar = models.ForeignKey(Entidad)
 
     def __unicode__(self):
        return 'Sala: ' + self.nombre
+
+    def getSala(self):
+        return self.nombre + " - " + str(self.en_lugar)
+
+    def __str__(self):
+        return self.getSala()
 
     class Meta:
         verbose_name = "Sala"
@@ -97,11 +127,17 @@ class Sala(models.Model):
 
 class Pasillo(models.Model):
     nombre = models.CharField(max_length=160)
-    detalle = models.TextField(max_length=300)
+    detalle = models.TextField(max_length=300,null=True,blank=True,)
     en_la_sala = models.ForeignKey(Sala)
 
     def __unicode__(self):
        return 'Pasillo: ' + self.nombre
+
+    def getPasillo(self):
+        return self.nombre
+
+    def __str__(self):
+        return self.getPasillo()
 
     class Meta:
         verbose_name = "Pasillo"
@@ -110,11 +146,17 @@ class Pasillo(models.Model):
 
 class Habitacion(models.Model):
     nombre = models.CharField(max_length=160)
-    detalle = models.TextField(max_length=300)
+    detalle = models.TextField(max_length=300,null=True,blank=True,)
     en_pasillo = models.ManyToManyField(Pasillo)
 
     def __unicode__(self):
        return 'Habitacion: ' + self.nombre
+
+    def getHabitacion(self):
+        return self.nombre
+
+    def __str__(self):
+        return self.getHabitacion()
 
     class Meta:
         verbose_name= "Habitacion"
@@ -127,6 +169,12 @@ class Tipo_Cita(models.Model):
 
     def __unicode__(self):
        return 'Cita: ' + self.nombre
+
+    def getTipoCita(self):
+        return self.nombre
+
+    def __str__(self):
+        return self.getTipoCita()
 
     class Meta:
         verbose_name = "Tipo de cita"
@@ -141,7 +189,7 @@ class Citas(models.Model):
     )
     fecha_creacion = models.DateTimeField(auto_now=True)
     paciente = models.ForeignKey(Paciente)
-    Medico = models.ForeignKey(Medico)
+    medico = models.ForeignKey(Medico)
     habitacion = models.ForeignKey(Habitacion)
     cita_para = models.DateTimeField(auto_now=False)
     descripcion = models.TextField()
@@ -151,6 +199,12 @@ class Citas(models.Model):
     def __unicode__(self):
        return 'Cita: ' + unicode(self.id)
 
+    def getCitas(self):
+        return self.paciente
+
+    def __str__(self):
+        return str(self.getCitas())
+
     class Meta:
         verbose_name= "Cita"
         verbose_name_plural = "Citas"
@@ -158,8 +212,7 @@ class Citas(models.Model):
 
 
 class Consulta_Medica(models.Model):
-    #paciente = models.ForeignKey(Paciente)
-    #medico = models.ForeignKey(Medico)
+
     cita = models.ForeignKey(Citas)
     fecha = models.DateTimeField(auto_now=True)
     detalles = models.TextField()
@@ -167,6 +220,12 @@ class Consulta_Medica(models.Model):
 
     def __unicode__(self):
        return 'Consultas Medicas: ' + unicode(self.id)
+
+    def getConsultaMedica(self):
+        return self.cita
+
+    def __str__(self):
+        return str(self.getConsultaMedica())
 
     class Meta:
         verbose_name= "Consulta Medica"
