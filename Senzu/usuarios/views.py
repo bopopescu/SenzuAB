@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group, Permission
 from rest_framework import routers, serializers, viewsets
 from usuarios.serializers import *
 from rest_framework.response import Response
@@ -10,15 +10,22 @@ from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from usuarios.my_user import Usuario
 from usuarios.models import *
+from .permissions import UserPermission
 
 # Create your views here.
 class EntidadViewSet(viewsets.ModelViewSet):
     queryset = Entidad.objects.all()
     serializer_class = EntidadSerializer
 
+class PermissionViewSet(viewsets.ModelViewSet):
+    queryset = Permission.objects.all()
+    serializer_class = PermissionSerializer
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UserSerializer
+    #Permite que solo los admin y los que tiene grupo definido puedan act, crear
+    permission_classes = (UserPermission,)
 
 class PacienteViewSet(viewsets.ModelViewSet):
     queryset = Paciente.objects.all()
@@ -56,6 +63,9 @@ class Consulta_MedicaViewSet(viewsets.ModelViewSet):
     queryset = Consulta_Medica.objects.all()
     serializer_class = Consulta_MedicaSerializer
 
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
 
 # obtener los datos del usuario al enviar el username
 class GetAUsuarioPorUsernameOemail(APIView):
@@ -102,3 +112,4 @@ class GetAUsuarioPorUsernameOemail(APIView):
             return Response({"_apiResponse_Busqueda_por": usuario_a_buscar, "_estado": estado, "data": serializer.data })
         else:
             return Response({"_apiResponse_Busqueda_por": usuario_a_buscar, "_estado": estado, "error": "No se encontró ningún resultado" })
+

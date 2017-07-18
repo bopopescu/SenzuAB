@@ -2,10 +2,10 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
-
 from usuarios.my_user import *
+
 
 class Entidad(models.Model):
     nombre = models.CharField(max_length=100)
@@ -231,3 +231,5 @@ class Consulta_Medica(models.Model):
         verbose_name= "Consulta Medica"
         verbose_name_plural = "Consultas Medicas"
         ordering = ('fecha',)
+
+

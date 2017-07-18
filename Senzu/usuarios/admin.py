@@ -9,6 +9,7 @@ from usuarios.models import *
 from usuarios.my_user import *
 from usuarios.forms import *
 
+
 class MedicoAdm(admin.ModelAdmin):
     models= Medico
 
@@ -53,7 +54,7 @@ class ConsultaMedicaAdmin(admin.ModelAdmin):
 admin.site.register(Usuario, UserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
-admin.site.unregister(Group)
+#admin.site.unregister(Group)
 admin.site.register(Especialidad, EspecialidadAdmin)
 admin.site.register(Medico, MedicoAdm)
 admin.site.register(Paciente, PacienteAdmin)

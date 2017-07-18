@@ -40,6 +40,8 @@ router.register(r'habitacion', HabitacionViewSet)
 router.register(r'tipo_cita', Tipo_CitaViewSet)
 router.register(r'citas', CitasViewSet)
 router.register(r'consultas_medicas', Consulta_MedicaViewSet)
+router.register(r'grupos', GroupViewSet)
+router.register(r'permission', PermissionViewSet)
 router.add_api_view("ObetenerUsuario", url(r'ObetenerUsuario', GetAUsuarioPorUsernameOemail.as_view(), name="ObetenerUsuario"))
 
 # Alertas

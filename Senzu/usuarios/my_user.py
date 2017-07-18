@@ -10,6 +10,7 @@ from django.db import models
 # http://es.stackoverflow.com/questions/930/roles-de-usuarios-en-django
 
 # Create your models here.
+from dry_rest_permissions.generics import allow_staff_or_superuser, authenticated_users
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 
@@ -83,6 +84,32 @@ class Usuario(AbstractUser, PermissionsMixin):
     REQUIRED_FIELDS = ['first_name', 'last_name', 'cedula','username']
 
     objects = AdministradorDeUsuarios()
+
+    @staticmethod
+    def has_read_permission(request):
+        return True
+
+    def has_object_read_permission(self, request):
+        return True
+
+    @staticmethod
+    def has_write_permission(request):
+        return False
+
+    @staticmethod
+    def has_create_permission(request):
+        return True
+
+
+    @staticmethod
+    def has_publish_permission(request):
+        return True
+
+    def has_object_publish_permission(self, request):
+        return request.user == self.owner
+
+
+
 
     def get_full_name(self):
         # The user is identified by their email address

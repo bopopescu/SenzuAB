@@ -4,15 +4,39 @@ Created on 02/12/2017
 @author: alexisbatistabustavino
 '''
 from django.conf.urls import url, include
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group, Permission
 from rest_framework import routers, serializers, viewsets
 from django.utils import timezone
 from usuarios.my_user import *
 from usuarios.models import *
+from dry_rest_permissions.generics import DRYPermissionsField
 
 
 # Serializers define the API representation.
+
+class PermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Permission
+        fields = (
+            'id',
+            'name',
+            'codename',
+            'content_type'
+        )
+
+class GroupSerializer(serializers.ModelSerializer):
+    permissions = serializers.StringRelatedField(many=True)
+    class Meta:
+        model = Group
+        fields = (
+            'url',
+            'name',
+            'permissions'
+        )
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = Usuario
         fields = (
@@ -27,7 +51,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'es_paciente',
             'is_active',
             'is_admin',
-            'is_superuser'
+            'is_superuser',
+            'groups'
         )
 class EntidadSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'rest_framework_docs',
     'alertas',
     'usuarios',
-    'accounts'
+    'accounts',
+    'dry_rest_permissions',
 ]
 
 MIDDLEWARE = [
