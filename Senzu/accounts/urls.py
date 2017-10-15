@@ -10,5 +10,5 @@ urlpatternsAccount = [
     #url(r'^login/$', local_views.get_auth_token, name='login'),
     #url(r'^logout/$', local_views.logout_user, name='logout'),
     #url(r'^auth/$',  local_views.login_form, name='login_form'),
-    url(r'^get_auth_token/$', rest_framework_views.obtain_auth_token, name='get_auth_token'),
+    url(r'^get_auth_token/', rest_framework_views.obtain_auth_token, name='get_auth_token'),
 ] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

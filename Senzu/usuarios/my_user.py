@@ -85,30 +85,6 @@ class Usuario(AbstractUser, PermissionsMixin):
 
     objects = AdministradorDeUsuarios()
 
-    @staticmethod
-    def has_read_permission(request):
-        return True
-
-    def has_object_read_permission(self, request):
-        return True
-
-    @staticmethod
-    def has_write_permission(request):
-        return False
-
-    @staticmethod
-    def has_create_permission(request):
-        return True
-
-
-    @staticmethod
-    def has_publish_permission(request):
-        return True
-
-    def has_object_publish_permission(self, request):
-        return request.user == self.owner
-
-
 
 
     def get_full_name(self):

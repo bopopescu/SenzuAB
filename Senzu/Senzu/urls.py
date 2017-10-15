@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers, serializers, viewsets
 from rest_framework.urlpatterns import format_suffix_patterns
+from rest_framework.authtoken import views
 from rest_framework_swagger.views import get_swagger_view
 from Senzu.custom_routers import HybridRouter
 from alertas.views import *
@@ -43,6 +44,7 @@ router.register(r'consultas_medicas', Consulta_MedicaViewSet)
 router.register(r'grupos', GroupViewSet)
 router.register(r'permission', PermissionViewSet)
 router.add_api_view("ObetenerUsuario", url(r'ObetenerUsuario', GetAUsuarioPorUsernameOemail.as_view(), name="ObetenerUsuario"))
+router.add_api_view('ValidarToken', url(r'ValidarToken', ValidarToken.as_view(), name="ValidarToken"))
 
 # Alertas
 router.register(r'alertas', AlertasViewSet)
@@ -51,7 +53,7 @@ router.register(r'alertasRecibida', AlertasRecibidasViewSet)
 urlpatterns = [
     url(r'^$', schema_view),
     url(r'^admin/', admin.site.urls),
-    url(r'^Api_v1/', include(router.urls)),
+    url(r'^api_v1/', include(router.urls)),
     #url(r'^docs/', include('rest_framework_docs.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 

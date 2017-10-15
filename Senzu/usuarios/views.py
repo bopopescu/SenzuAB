@@ -11,6 +11,7 @@ from rest_framework.authtoken.models import Token
 from usuarios.my_user import Usuario
 from usuarios.models import *
 from .permissions import UserPermission
+from rest_framework.permissions import *
 
 # Create your views here.
 class EntidadViewSet(viewsets.ModelViewSet):
@@ -25,7 +26,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UserSerializer
     #Permite que solo los admin y los que tiene grupo definido puedan act, crear
-    permission_classes = (UserPermission,)
+    #permission_classes = (UserPermission,)
 
 class PacienteViewSet(viewsets.ModelViewSet):
     queryset = Paciente.objects.all()
@@ -67,8 +68,29 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+class ValidarToken(APIView):
+    permission_classes = (AllowAny,)
+    def post(self, request, format=None):
+        """
+
+        :param request:
+        :param format:
+        return: Bool
+        """
+        estado = False
+        try:
+            token = Token.objects.get(key= request.data['token'])
+        except Token.DoesNotExist:
+            token = None
+        if token:
+            estado = True
+            return Response({"valido": estado})
+        return Response({"valido": estado})
+
+
 # obtener los datos del usuario al enviar el username
 class GetAUsuarioPorUsernameOemail(APIView):
+
     def post(self, request, format=None):
         """
         /?format=json
@@ -109,7 +131,8 @@ class GetAUsuarioPorUsernameOemail(APIView):
         if user is not None:
             estado = True
             serializer = UserApiSerializer(user, many=False)
-            return Response({"_apiResponse_Busqueda_por": usuario_a_buscar, "_estado": estado, "data": serializer.data })
+            return Response(serializer.data)
+            #return Response({"_apiResponse_Busqueda_por": usuario_a_buscar, "_valido": estado, "data": serializer.data })
         else:
-            return Response({"_apiResponse_Busqueda_por": usuario_a_buscar, "_estado": estado, "error": "No se encontró ningún resultado" })
+            return Response({"_apiResponse_Busqueda_por": usuario_a_buscar, "_valido": estado, "error": "No se encontró ningún resultado" })
 

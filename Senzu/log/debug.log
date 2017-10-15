@@ -1,0 +1,43 @@
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SELECT VERSION(); args=None
+(0.008) SHOW FULL TABLES; args=None
+(0.001) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`date_joined`, `auth_user`.`email`, `auth_user`.`username`, `auth_user`.`cedula`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`es_medico`, `auth_user`.`es_paciente`, `auth_user`.`is_active`, `auth_user`.`is_admin`, `auth_user`.`is_superuser` FROM `auth_user` WHERE `auth_user`.`email` = 'alexis05batista@gmail.com'; args=('alexis05batista@gmail.com',)
+(0.001) SELECT `authtoken_token`.`key`, `authtoken_token`.`user_id`, `authtoken_token`.`created` FROM `authtoken_token` WHERE `authtoken_token`.`user_id` = 1; args=(1,)
+"POST /get_auth_token/ HTTP/1.1" 200 52
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`date_joined`, `auth_user`.`email`, `auth_user`.`username`, `auth_user`.`cedula`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`es_medico`, `auth_user`.`es_paciente`, `auth_user`.`is_active`, `auth_user`.`is_admin`, `auth_user`.`is_superuser` FROM `auth_user` WHERE `auth_user`.`email` = 'alexis05batista@gmail.com'; args=('alexis05batista@gmail.com',)
+"POST /get_auth_token/ HTTP/1.1" 400 86
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`date_joined`, `auth_user`.`email`, `auth_user`.`username`, `auth_user`.`cedula`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`es_medico`, `auth_user`.`es_paciente`, `auth_user`.`is_active`, `auth_user`.`is_admin`, `auth_user`.`is_superuser` FROM `auth_user` WHERE `auth_user`.`email` = 'alexis05batista@gmail.com'; args=('alexis05batista@gmail.com',)
+"POST /get_auth_token/ HTTP/1.1" 400 86
+"POST /get_auth_token/ HTTP/1.1" 400 81
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SELECT VERSION(); args=None
+(0.017) SHOW FULL TABLES; args=None
+(0.001) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`date_joined`, `auth_user`.`email`, `auth_user`.`username`, `auth_user`.`cedula`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`es_medico`, `auth_user`.`es_paciente`, `auth_user`.`is_active`, `auth_user`.`is_admin`, `auth_user`.`is_superuser` FROM `auth_user` LIMIT 21; args=()
+(0.000) SELECT COUNT(*) AS `__count` FROM `auth_user`; args=()
+(0.000) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`date_joined`, `auth_user`.`email`, `auth_user`.`username`, `auth_user`.`cedula`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`es_medico`, `auth_user`.`es_paciente`, `auth_user`.`is_active`, `auth_user`.`is_admin`, `auth_user`.`is_superuser` FROM `auth_user` LIMIT 5; args=()
+(0.000) SELECT VERSION(); args=None
+(0.001) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `auth_user_groups` ON (`auth_group`.`id` = `auth_user_groups`.`group_id`) WHERE `auth_user_groups`.`usuario_id` = 1; args=(1,)
+(0.000) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `auth_user_groups` ON (`auth_group`.`id` = `auth_user_groups`.`group_id`) WHERE `auth_user_groups`.`usuario_id` = 2; args=(2,)
+(0.000) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `auth_user_groups` ON (`auth_group`.`id` = `auth_user_groups`.`group_id`) WHERE `auth_user_groups`.`usuario_id` = 3; args=(3,)
+(0.000) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `auth_user_groups` ON (`auth_group`.`id` = `auth_user_groups`.`group_id`) WHERE `auth_user_groups`.`usuario_id` = 4; args=(4,)
+(0.000) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `auth_user_groups` ON (`auth_group`.`id` = `auth_user_groups`.`group_id`) WHERE `auth_user_groups`.`usuario_id` = 5; args=(5,)
+"GET /api_v1/usuarios/?format=json HTTP/1.1" 200 1659
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SELECT VERSION(); args=None
+(0.007) SHOW FULL TABLES; args=None
+(0.002) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SELECT VERSION(); args=None
+(0.000) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`date_joined`, `auth_user`.`email`, `auth_user`.`username`, `auth_user`.`cedula`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`es_medico`, `auth_user`.`es_paciente`, `auth_user`.`is_active`, `auth_user`.`is_admin`, `auth_user`.`is_superuser` FROM `auth_user` WHERE `auth_user`.`email` = 'alexis05batista@gmail.com'; args=('alexis05batista@gmail.com',)
+"POST /get_auth_token/ HTTP/1.1" 400 86

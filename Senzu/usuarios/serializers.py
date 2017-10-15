@@ -9,7 +9,6 @@ from rest_framework import routers, serializers, viewsets
 from django.utils import timezone
 from usuarios.my_user import *
 from usuarios.models import *
-from dry_rest_permissions.generics import DRYPermissionsField
 
 
 # Serializers define the API representation.

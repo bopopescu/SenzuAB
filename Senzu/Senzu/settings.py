@@ -31,7 +31,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-ALLOWED_HOSTS = ['192.168.0.14','127.0.0.1','192.168.10.103']
+ALLOWED_HOSTS = ['192.168.0.14','192.168.0.6','127.0.0.1','192.168.0.9']
 
 # Application definition
 
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'alertas',
     'usuarios',
     'accounts',
-    'dry_rest_permissions',
+
 ]
 
 MIDDLEWARE = [
@@ -78,6 +78,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
@@ -85,7 +86,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         #'rest_framework.permissions.IsAdminUser',),
         'rest_framework.permissions.AllowAny',
-        #'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated',
     ),
         'PAGE_SIZE': 25
 
@@ -194,3 +195,23 @@ STATICFILES_DIRS = [
 STATIC_ROOT = '/var/www/html/Senzu/site/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+#LOGGING = {
+#    'version': 1,
+#    'disable_existing_loggers': False,
+#    'handlers': {
+#        'file': {
+#            'level': 'DEBUG',
+#            'class': 'logging.FileHandler',
+#            'filename': BASE_DIR+'/log/debug.log',
+#        },
+#    },
+#    'loggers': {
+#        'django': {
+#            'handlers': ['file'],
+#            'level': 'DEBUG',
+#            'propagate': True,
+#        },
+#    },
+#}
