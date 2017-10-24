@@ -1,7 +1,7 @@
 appdirs==1.4.3
 coreapi==2.3.0
 coreschema==0.0.4
-Django==1.11.6
+Django==1.11.1
 django-cors-headers==2.0.2
 django-filter==1.0.4
 django-rest-auth==0.9.1
@@ -25,3 +25,7 @@ requests==2.14.2
 simplejson==3.10.0
 six==1.10.0
 uritemplate==3.0.0
+
+#sudo apt-get install libmysqlclient-dev
+#sudo -H pip3 install mysqlclient
+
