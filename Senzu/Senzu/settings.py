@@ -31,7 +31,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-ALLOWED_HOSTS = ['192.168.0.14','192.168.0.6','127.0.0.1','192.168.0.9']
+ALLOWED_HOSTS = ['192.168.0.14','192.168.0.5','127.0.0.1','192.168.0.9']
 
 # Application definition
 
@@ -134,7 +134,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'senzupy',
         'USER': 'root',
-        'PASSWORD': '123456',
+        'PASSWORD': 'root',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
