@@ -20,12 +20,12 @@ class UserCreationForm(forms.ModelForm):
     cedula = forms.CharField(label='Cedula del usuario', widget=forms.TextInput)
     first_name = forms.CharField(label='Nombre', widget=forms.TextInput)
     last_name = forms.CharField(label='Apellido', widget=forms.TextInput)
-    es_medico = forms.BooleanField(label='Medico', widget=forms.CheckboxInput)
-    es_paciente = forms.BooleanField(label='Paciente', widget=forms.CheckboxInput)
+    es_medico = forms.BooleanField(required=False,label='Medico', widget=forms.CheckboxInput)
+    es_paciente = forms.BooleanField(required=False,label='Paciente', widget=forms.CheckboxInput)
     is_active = forms.BooleanField(label='Activo', widget=forms.CheckboxInput)
-    is_staff = forms.BooleanField(label='Staff', widget=forms.CheckboxInput)
-    is_admin = forms.BooleanField(label='Admin', widget=forms.CheckboxInput)
-    is_superuser = forms.BooleanField(label='Super usuario', widget=forms.CheckboxInput)
+    is_staff = forms.BooleanField(required=False,label='Staff', widget=forms.CheckboxInput)
+    is_admin = forms.BooleanField(required=False,label='Admin', widget=forms.CheckboxInput)
+    is_superuser = forms.BooleanField(required=False,label='Super usuario', widget=forms.CheckboxInput)
 
     class Meta:
         model = Usuario

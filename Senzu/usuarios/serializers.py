@@ -12,6 +12,11 @@ from usuarios.models import *
 
 
 # Serializers define the API representation.
+class EspecialidadSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Especialidad
+        fields = "__all__"
+
 
 class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -53,51 +58,12 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'is_superuser',
             'groups'
         )
-class EntidadSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Entidad
-        fields = "__all__"
 
-class EspecialidadSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Especialidad
-        fields = "__all__"
 
 class MedicoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Medico
         fields = "__all__"
-
-class SalaSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Sala
-        fields = "__all__"
-
-class PasilloSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Pasillo
-        fields = "__all__"
-
-class HabitacionSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Habitacion
-        fields = "__all__"
-
-class Tipo_CitaSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Tipo_Cita
-        fields = "__all__"
-
-class CitasSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Citas
-        fields = "__all__"
-
-class Consulta_MedicaSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Consulta_Medica
-        fields = "__all__"
-
 
 class PacienteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

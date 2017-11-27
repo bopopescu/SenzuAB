@@ -49,8 +49,12 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'rest_framework_docs',
     'alertas',
+    'consultasmedicas',
+    'entidad',
     'usuarios',
     'accounts',
+
+    #'inventario',
 
 ]
 
@@ -132,7 +136,7 @@ DATABASES2 = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'senzupy',
+        'NAME': 'Salud',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',

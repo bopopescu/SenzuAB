@@ -25,6 +25,8 @@ from Senzu.custom_routers import HybridRouter
 from alertas.views import *
 from usuarios.views import *
 from accounts.urls import *
+from entidad.views import *
+from consultasmedicas.views import *
 schema_view = get_swagger_view(title='Senzu API')
 
 router = HybridRouter()
@@ -32,7 +34,7 @@ router = HybridRouter()
 # usuarios
 router.register(r'usuarios', UserViewSet)
 router.register(r'paciente', PacienteViewSet)
-router.register(r'entidad', EntidadViewSet)
+router.register(r'entidad', SucursalViewSet)
 router.register(r'especialidad', EspecialidadViewSet)
 router.register(r'medico', MedicoViewSet)
 router.register(r'sala', SalaViewSet)
@@ -40,7 +42,7 @@ router.register(r'pasillo', PasilloViewSet)
 router.register(r'habitacion', HabitacionViewSet)
 router.register(r'tipo_cita', Tipo_CitaViewSet)
 router.register(r'citas', CitasViewSet)
-router.register(r'consultas_medicas', Consulta_MedicaViewSet)
+router.register(r'consultasmedicas', Consulta_MedicaViewSet)
 router.register(r'grupos', GroupViewSet)
 router.register(r'permission', PermissionViewSet)
 router.add_api_view("ObetenerUsuario", url(r'ObetenerUsuario', GetAUsuarioPorUsernameOemail.as_view(), name="ObetenerUsuario"))
