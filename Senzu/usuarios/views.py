@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import base64
+import os
+from django.core.files import File
+from rest_framework.parsers import FormParser, MultiPartParser
 
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group, Permission
@@ -43,6 +47,17 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+class FotoDePerfilViewSet(viewsets.ModelViewSet):
+    queryset = Usuario.objects.all()
+    serializer_class = FotoPerfilSerializer
+    parser_classes = (MultiPartParser, FormParser,)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user,
+                        datafile=self.request.data.get('datafile'))
+
+
+
 class ValidarToken(APIView):
     permission_classes = (AllowAny,)
     def post(self, request, format=None):
@@ -55,16 +70,17 @@ class ValidarToken(APIView):
         estado = False
         try:
             token = Token.objects.get(key= request.data['token'])
+            usuario = token.user
         except Token.DoesNotExist:
             token = None
-        if token:
+        if token and usuario.is_active:
             estado = True
             return Response({"valido": estado})
         return Response({"valido": estado})
 
 
 # obtener los datos del usuario al enviar el username
-class GetAUsuarioPorUsernameOemail(APIView):
+class GetAUsuarioPorUsernameOEmail(APIView):
 
     def post(self, request, format=None):
         """
@@ -81,8 +97,6 @@ class GetAUsuarioPorUsernameOemail(APIView):
 
         """
         usuario_a_buscar = request.data['user']
-
-
         try:
             email = Usuario.objects.get(email = usuario_a_buscar)
         except Usuario.DoesNotExist:
@@ -92,11 +106,6 @@ class GetAUsuarioPorUsernameOemail(APIView):
         except Usuario.DoesNotExist:
             username = None
 
-        #try:
-            #user = Usuario.objects.get(username= request.data['user'])
-
-        #except Usuario.DoesNotExist:
-            #user = None
         if email is not None:
             user = email
         else:
@@ -104,7 +113,7 @@ class GetAUsuarioPorUsernameOemail(APIView):
 
         estado = False
         if user is not None:
-            estado = True
+            #estado = True
             serializer = UserApiSerializer(user, many=False)
             return Response(serializer.data)
             #return Response({"_apiResponse_Busqueda_por": usuario_a_buscar, "_valido": estado, "data": serializer.data })

@@ -79,6 +79,7 @@ class Usuario(AbstractUser, PermissionsMixin):
     is_staff = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False, blank=True)
     is_superuser = models.BooleanField(default=False, blank=True)
+    image_de_perfil = models.ImageField(upload_to='photos', max_length=254)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'cedula','username']

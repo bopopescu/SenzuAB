@@ -20,3 +20,7 @@ class Consulta_MedicaSerializer(serializers.HyperlinkedModelSerializer):
         model = Consulta_Medica
         fields = "__all__"
 
+class Solicitud_De_CitaSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Solicitud_de_cita
+        fields = "__all__"

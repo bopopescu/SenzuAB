@@ -12,6 +12,11 @@ from usuarios.models import *
 
 
 # Serializers define the API representation.
+class FotoPerfilSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ('id','image_de_perfil')
+
 class EspecialidadSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Especialidad
@@ -107,8 +112,8 @@ class UserApiSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Usuario
-        fields = ( 'first_name', 'last_name', 'username',
+        fields = ('id', 'first_name', 'last_name', 'username',
         'email', 'is_staff', 'date_joined','id', 'cedula',
         'es_medico', 'es_paciente', 'is_active', 'is_superuser',
-        'is_admin',
+        'is_admin', 'groups', 'user_permissions', 'image_de_perfil',
         )

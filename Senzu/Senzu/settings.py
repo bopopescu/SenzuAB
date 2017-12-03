@@ -31,7 +31,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-ALLOWED_HOSTS = ['192.168.0.14','192.168.0.5','127.0.0.1','192.168.0.9']
+ALLOWED_HOSTS = ['192.168.0.14','192.168.0.5','127.0.0.1','192.168.0.9','192.168.10.103']
 
 # Application definition
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'taggit',
     'corsheaders',
     'django_filters',
     'rest_framework_swagger',
@@ -53,7 +54,6 @@ INSTALLED_APPS = [
     'entidad',
     'usuarios',
     'accounts',
-
     #'inventario',
 
 ]
@@ -86,6 +86,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         #'rest_framework.permissions.IsAdminUser',),

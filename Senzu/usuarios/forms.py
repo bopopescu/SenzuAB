@@ -26,12 +26,13 @@ class UserCreationForm(forms.ModelForm):
     is_staff = forms.BooleanField(required=False,label='Staff', widget=forms.CheckboxInput)
     is_admin = forms.BooleanField(required=False,label='Admin', widget=forms.CheckboxInput)
     is_superuser = forms.BooleanField(required=False,label='Super usuario', widget=forms.CheckboxInput)
+    image_de_perfil = forms.FileField(required=False,label='Foto de perfil', widget=forms.FileInput)
 
     class Meta:
         model = Usuario
-        fields = ('email', 'username', 'cedula', 'first_name','last_name',
+        fields = ('email', 'username', 'password', 'cedula', 'first_name','last_name',
                   'es_medico', 'es_paciente', 'is_active', 'is_staff',
-                  'is_admin', 'is_superuser',)
+                  'is_admin', 'is_superuser','image_de_perfil',)
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -62,7 +63,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ('email', 'username', 'is_active', 'is_admin','cedula',)
+        fields = ('email', 'username', 'is_active', 'is_admin','cedula','image_de_perfil',)
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -79,7 +80,7 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'username','first_name','last_name', 'cedula',)
+    list_display = ('email', 'username','first_name','last_name', 'cedula','image_de_perfil',)
 
     list_filter = ('is_admin',)
 

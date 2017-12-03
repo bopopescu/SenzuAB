@@ -6,6 +6,25 @@ from usuarios.models import *
 
 
 
+class Solicitud_de_cita(models.Model):
+    ESTADO = (
+        ('A', 'Activa'),
+        ('R', 'Rechazada'),
+        ('C', 'Completada'),
+    )
+    paciente = models.ForeignKey(Paciente)
+    fecha_creacion= models.DateTimeField(auto_now=True)
+    medico = models.ForeignKey(Medico)
+    cita_para = models.DateTimeField(auto_now=False)
+    descripcion = models.TextField()
+    especialidad = models.ForeignKey(Especialidad)
+    estado = models.CharField(max_length=1, choices=ESTADO, default='A')
+
+    class Meta:
+        verbose_name= "Solicitud de cita"
+        verbose_name_plural = "Solicitudes de Citas"
+        ordering = ('cita_para',)
+
 class Tipo_Cita(models.Model):
     nombre = models.CharField(max_length=160)
 

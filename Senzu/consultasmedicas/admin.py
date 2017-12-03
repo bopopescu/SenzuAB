@@ -16,6 +16,11 @@ class ConsultaMedicaAdmin(admin.ModelAdmin):
     models = Consulta_Medica
     list_display = ('cita', 'fecha', 'detalles', 'receta',)
 
+class SolicitudDeCitasAdmin(admin.ModelAdmin):
+    models = Solicitud_de_cita
+    list_display = ('descripcion', 'paciente','cita_para','especialidad', 'estado')
+
 admin.site.register(Tipo_Cita, TipoCitaAdmin)
 admin.site.register(Citas, CitaAdmin)
 admin.site.register(Consulta_Medica, ConsultaMedicaAdmin)
+admin.site.register(Solicitud_de_cita,SolicitudDeCitasAdmin)

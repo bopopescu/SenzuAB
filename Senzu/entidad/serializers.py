@@ -8,7 +8,7 @@ from entidad.models import *
 
 class SucursalSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Entidad
+        model = Sucursal
         fields = "__all__"
 
 class SalaSerializer(serializers.HyperlinkedModelSerializer):

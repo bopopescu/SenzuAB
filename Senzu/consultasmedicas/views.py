@@ -21,3 +21,7 @@ class CitasViewSet(viewsets.ModelViewSet):
 class Consulta_MedicaViewSet(viewsets.ModelViewSet):
     queryset = Consulta_Medica.objects.all()
     serializer_class = Consulta_MedicaSerializer
+
+class Solicitud_de_CitaViewSet(viewsets.ModelViewSet):
+    queryset = Solicitud_de_cita.objects.all()
+    serializers_class = Solicitud_de_cita
