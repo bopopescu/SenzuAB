@@ -15,25 +15,6 @@ import datetime
 #     super(, self).save(*args, **kwargs)
 
 
-
-class Tipo_Cita(models.Model):
-    nombre = models.CharField(max_length=160)
-
-
-    def __unicode__(self):
-       return 'Cita: ' + self.nombre
-
-    def getTipoCita(self):
-        return self.nombre
-
-    def __str__(self):
-        return self.getTipoCita()
-
-    class Meta:
-        verbose_name = "Tipo de cita"
-        verbose_name_plural = "Tipos de citas"
-        ordering = ('nombre',)
-
 class Citas(models.Model):
     ESTADO = (
         ('A', 'Activa'),
@@ -62,32 +43,77 @@ class Citas(models.Model):
     class Meta:
         verbose_name= "Cita"
         verbose_name_plural = "Citas"
-        ordering = ('cita_para',)
-
-    def asignar_hora_para_la_cita(self):
-        pass
-
-    def asignar_dia_para_la_cita(self):
-        pass
+        ordering = ('id',)
 
     def obtener_tiempo_entre_citas(self):
         TIEMPO_ENTRE_CITAS = getattr(settings, "TIEMPO_ENTRE_CITAS", None)
         return TIEMPO_ENTRE_CITAS
 
+    def esta_disponible_el_medico(self, fecha_solicitada, medico_para_la_cita):
+        if((fecha_solicitada==None) or (fecha_solicitada=="")):
+            cita_con_min_antes_a_la_solicitada = (datetime.datetime.now() - datetime.timedelta(0, self.obtener_tiempo_entre_citas()))
+            cita_con_min_despues_a_la_solicitada  = (datetime.datetime.now() + datetime.timedelta(0, self.obtener_tiempo_entre_citas()))
+        else:
+            cita_con_min_antes_a_la_solicitada = self.cita_para + datetime.timedelta(0, -self.obtener_tiempo_entre_citas())
+            cita_con_min_despues_a_la_solicitada = self.cita_para + datetime.timedelta(0,self.obtener_tiempo_entre_citas())
 
-    def verificar_disponibilidad_del_medico(self):
-        tiempo_con_min_antes = self.cita_para + datetime.timedelta(0, -self.obtener_tiempo_entre_citas())
-        tiempo_con_min_despues = self.cita_para + datetime.timedelta(0,self.obtener_tiempo_entre_citas())
 
-        citas_del_medico = Citas.objects.filter(medico = self.medico,
-                                                cita_para__date=self.cita_para)
+        disponibilidad_del_medico = Citas.objects.filter(
+            medico = medico_para_la_cita,
+        ).filter(cita_para__range=(cita_con_min_antes_a_la_solicitada, cita_con_min_despues_a_la_solicitada))
 
-        print(citas_del_medico)
+        if disponibilidad_del_medico:
 
-    def validar_fecha_de_la_cita(self):
-        cita = Citas.objects.filter(cita_para = self.cita_para,
-                                    habitacion = self.habitacion)
-        self.verificar_disponibilidad_del_medico()
+            if disponibilidad_del_medico.count() == 0:
+                if disponibilidad_del_medico[0] == self:
+                    raise ValueError("La cita ya se ingreso")
+                return True
+            else:
+                return False
+        else:
+            return True
+
+    def asignar_medico_para_la_cita(self, medico_para_la_cita):
+        if ((medico_para_la_cita == None) or (medico_para_la_cita == "")):
+            medico_sugerido = Usuario.objects.filter(
+                es_medico = True,
+                is_active = True
+            )
+            if medico_sugerido:
+                if medico_sugerido.count() == 0:
+                    raise ValueError("No existen medicos disponibles")
+                else:
+                    # TODO: se debe buscar alguna forma inteligente de asignar medicos..
+                    for m in medico_sugerido:
+                        if (self.esta_disponible_el_medico(self.cita_para, m)== True):
+                            return medico_sugerido
+                        else:
+                            raise ValueError("No hay medicos en este momento")
+        else:
+            if(self.esta_disponible_el_medico(self.cita_para, self.medico) == True):
+                return self.medico
+            else:
+                raise ValueError("El medico ya tiene una cita asignada para esta hora.")
+
+
+
+    def validar_datos_de_la_cita(self):
+
+        self.medico = self.asignar_medico_para_la_cita(self.medico)
+
+        # TODO: aun no se valida si la habitacion esta ocupada.
+        ya_vaida_habitacion = False
+        if(ya_vaida_habitacion==True):
+            cita_con_min_antes_a_la_solicitada = self.cita_para + datetime.timedelta(0, -self.obtener_tiempo_entre_citas())
+            cita_con_min_despues_a_la_solicitada = self.cita_para + datetime.timedelta(0, self.obtener_tiempo_entre_citas())
+
+            cita = Citas.objects.filter(
+                habitacion = self.habitacion
+            ).filter(cita_para__range=(cita_con_min_antes_a_la_solicitada, cita_con_min_despues_a_la_solicitada))
+        else:
+            cita = Citas.objects.filter( habitacion = self.habitacion, cita_para = self.cita_para)
+
+
         if cita:
             if cita.count() == 1:
                 if cita[0] == self:
@@ -96,6 +122,22 @@ class Citas(models.Model):
         return True
 
     def save(self, *args, **kwargs):
-        if not self.validar_fecha_de_la_cita():
-            raise ValueError("Ya existe una cita para la misma hora "+ str(self.cita_para))
+
+        self.validar_datos_de_la_cita()
+
+
+        if(self.fecha_creacion==""):
+            raise ValueError("Las citas deben tener una fecha de creacion")
+        if((self.paciente==None) or (self.paciente=="")):
+            raise ValueError("Las citas deben tener un paciente")
+        if((self.medico==None) or (self.medico=="")):
+            raise ValueError("Las citas deben tener un medico")
+        if((self.habitacion==None) or (self.habitacion=="")):
+            raise ValueError("Se debe asignar una habitacion para la cita")
+        if((self.cita_para==None) or (self.cita_para=="")):
+            # Se debe generar una fecha para la cita
+            pass
+
+        if not self.validar_datos_de_la_cita():
+            raise ValueError("No se puede crear la cita, trate cambiando la hora de la cita"+ str(self.cita_para))
         super(Citas,self).save(*args,**kwargs)

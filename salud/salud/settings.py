@@ -31,7 +31,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-ALLOWED_HOSTS = ['127.0.0.1','192.168.0.4','192.168.10.100','192.168.0.4']
+#ALLOWED_HOSTS = ['127.0.0.1','192.168.0.3','192.168.10.100','192.168.0.4']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -125,17 +126,43 @@ DATABASES2 = {
     }
 }
 
-DATABASES = {
+DATABASESFAKE = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'salud_ab1',
         'USER': 'postgres',
         'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'HOST': '35.237.221.244',
+        'PORT': '5432',
+    }
+}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'salud',
+        'USER': 'saroo5',
+        'PASSWORD': 'saroo5',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
 
+DATABASESconMYSLQ = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'salud',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
+
+DATABASES['default']['HOST'] = '/cloudsql/salud-ab:us-east1:s5lud5b'
+if os.getenv('GAE_INSTANCE'):
+    pass
+else:
+    DATABASES['default']['HOST'] = '127.0.0.1'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -177,7 +204,7 @@ STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-TIEMPO_ENTRE_CITAS = 1800
+TIEMPO_ENTRE_CITAS = 1200
 
 
 # crear ambiente > virtualenv -p python3 env
@@ -188,3 +215,5 @@ TIEMPO_ENTRE_CITAS = 1800
 #
 #
 #
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")

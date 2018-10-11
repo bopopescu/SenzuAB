@@ -5,10 +5,7 @@ from rest_framework import routers, serializers, viewsets
 from django.utils import timezone
 from consultasmedicas.models import *
 
-class Tipo_CitaSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Tipo_Cita
-        fields = "__all__"
+
 
 class CitasSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

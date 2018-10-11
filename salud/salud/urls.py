@@ -50,7 +50,6 @@ router.register(r'pasillo', PasilloViewSet)
 router.register(r'habitacion', HabitacionViewSet)
 
 #consultasmedicas app
-router.register(r'tipo_cita', Tipo_CitaViewSet)
 router.register(r'citas', CitasViewSet)
 router.add_api_view("ObetenerCitas", url(r'ObetenerCitas', CitasPorPaciente.as_view(), name="ObetenerCitas"))
 

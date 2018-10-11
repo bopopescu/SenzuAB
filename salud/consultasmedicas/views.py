@@ -10,10 +10,6 @@ from consultasmedicas.serializers import *
 from rest_framework.permissions import *
 
 
-class Tipo_CitaViewSet(viewsets.ModelViewSet):
-    queryset = Tipo_Cita.objects.all()
-    serializer_class = Tipo_CitaSerializer
-
 class CitasViewSet(viewsets.ModelViewSet):
     queryset = Citas.objects.all()
     serializer_class = CitasSerializer
@@ -29,7 +25,6 @@ class CitasPorPaciente(APIView):
         """
         estado = False
         paciente_consultado = request.data['user']
-        print(paciente_consultado)
         try:
             tokenHeader = request.META.get("HTTP_AUTHORIZATION")
             tokenHeader = tokenHeader.split(" ")
