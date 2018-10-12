@@ -126,17 +126,17 @@ DATABASES2 = {
     }
 }
 
-DATABASESFAKE = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'salud_ab1',
         'USER': 'postgres',
         'PASSWORD': 'root',
-        'HOST': '35.237.221.244',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
-DATABASES = {
+DATABASESGAE = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'salud',
@@ -158,11 +158,12 @@ DATABASESconMYSLQ = {
     }
 }
 
-DATABASES['default']['HOST'] = '/cloudsql/salud-ab:us-east1:s5lud5b'
-if os.getenv('GAE_INSTANCE'):
-    pass
-else:
-    DATABASES['default']['HOST'] = '127.0.0.1'
+# DATABASES['default']['HOST'] = '/cloudsql/salud-ab:us-east1:s5lud5b'
+# if os.getenv('GAE_INSTANCE'):
+#     pass
+# else:
+#     DATABASES['default']['host'] = '127.0.0.1'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
