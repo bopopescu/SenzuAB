@@ -4,13 +4,13 @@ from google.appengine.ext.ndb import polymodel
 from Contacto import Contacto
 
 class Persona(Contacto):
-    nombre = ndb.StringProperty()
-    apellido = ndb.StringProperty()
-    correo = ndb.StringProperty()
-    nickname = ndb.StringProperty()
+    nombre = ndb.StringProperty(required=True)
+    apellido = ndb.StringProperty(required=True)
+    correo = ndb.StringProperty(required=True, repeated=False)
+    nickname = ndb.StringProperty(required=True, repeated=False)
     avatar = ndb.BlobProperty()
     creado = ndb.DateTimeProperty(auto_now_add=True)
-    admin = ndb.BooleanProperty()
+    sexo = ndb.StringProperty(choices=['Hombre', 'Mujer'])
 
 class Voluntario(Persona):
     #persona = ndb.UserProperty()
@@ -19,6 +19,4 @@ class Voluntario(Persona):
 
 class Admin(Persona):
     asignado = ndb.DateTimeProperty(auto_now_add=True)
-
-class Solitudes(ndb.Model):
-    lugar = ndb.GeoPtProperty()
+    activo = ndb.BooleanProperty(default=True)

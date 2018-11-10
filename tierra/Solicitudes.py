@@ -7,7 +7,7 @@ class Solitudes(polymodel.PolyModel):
     creado = ndb.DateTimeProperty(auto_now_add=True)
 
 class Plantas(Solitudes):
-    tipo = ndb.StringProperty()
+    tipo = ndb.StringProperty(required=True)
 
 class Tierra(Solitudes):
-    detalle = ndb.StringProperty()
+    detalle = ndb.StringProperty(required=True)
