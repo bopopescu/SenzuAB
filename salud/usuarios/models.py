@@ -137,6 +137,6 @@ class MedicoEnTurno(models.Model):
                 return False
 
     def save(self, *args, **kwargs):
-        if not self.se_puede_utilizar_la_habitacion(self, self.en_habitacion):
+        if not self.se_puede_utilizar_la_habitacion(self.en_habitacion):
             raise ValueError("La habitacion ya esta en uso."+ str(self.en_habitacion))
         super(MedicoEnTurno,self).save(*args,**kwargs)
