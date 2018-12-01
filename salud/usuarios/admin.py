@@ -21,7 +21,9 @@ class EspecialidadAdmin(admin.ModelAdmin):
     list_display = ('especialidad',)
 class MedicosEnTurnoAdmin(admin.ModelAdmin):
     models = MedicoEnTurno
-
+    list_display = ('medico', 'entrada', 'salida', 'en_habitacion', 'estado')
+    search_fields =('medico', 'en_habitacion')
+    ordering = ('medico','en_habitacion')
 
 # Now register the new UserAdmin...
 admin.site.register(Usuario, UserAdmin)

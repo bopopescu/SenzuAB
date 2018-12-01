@@ -102,8 +102,8 @@ class Citas(models.Model):
         self.medico = self.asignar_medico_para_la_cita(self.medico)
 
         # TODO: aun no se valida si la habitacion esta ocupada.
-        ya_vaida_habitacion = False
-        if(ya_vaida_habitacion==True):
+        ya_valida_habitacion = False
+        if(ya_valida_habitacion==True):
             cita_con_min_antes_a_la_solicitada = self.cita_para + datetime.timedelta(0, -self.obtener_tiempo_entre_citas())
             cita_con_min_despues_a_la_solicitada = self.cita_para + datetime.timedelta(0, self.obtener_tiempo_entre_citas())
 

@@ -106,10 +106,15 @@ class Paciente(models.Model):
     #     super(Paciente,self).save(*args,**kwargs)
 
 class MedicoEnTurno(models.Model):
+    ESTADO = (
+        ('A', 'Activo'),
+        ('V', 'Vencido'),
+    )
     medico = models.ForeignKey(Medico)
     entrada = models.DateTimeField(blank=False, null=False)
     salida = models.DateTimeField(blank=False, null=False)
     en_habitacion = models.ForeignKey(Habitacion)
+    estado = models.CharField(max_length=1, choices=ESTADO, default='A')
 
     def __unicode__(self):
        return unicode(self.medico)
@@ -129,12 +134,16 @@ class MedicoEnTurno(models.Model):
         if (habitacion_consultada == ""):
             raise ValueError("No se envio la habitacion para verificar si esta utilizada.")
 
-        medico_en_la_habitacion = MedicoEnTurno.objects.filter( habitacion_consultada = self.en_habitacion )
+        medico_en_la_habitacion = MedicoEnTurno.objects.filter( en_habitacion = habitacion_consultada, estado = 'A' )
+
         if medico_en_la_habitacion:
-            if medico_en_la_habitacion.count() == 0:
-                return True
+            if medico_en_la_habitacion.count() ==1:
+                if medico_en_la_habitacion[0] == self:
+                    return True
+                return False
             else:
                 return False
+        return True
 
     def save(self, *args, **kwargs):
         if not self.se_puede_utilizar_la_habitacion(self.en_habitacion):
