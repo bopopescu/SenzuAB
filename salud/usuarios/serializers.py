@@ -122,7 +122,7 @@ class DoctorPorEspecialidadSerializer(serializers.HyperlinkedModelSerializer):
     """
     Respuesta de la busqueda
     """
-    usuario =serializers.CharField()
+    usuario =MedicoSerializer()
     telefono = serializers.CharField()
     horario = serializers.CharField()
     def validate(self, data):
@@ -131,3 +131,19 @@ class DoctorPorEspecialidadSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Medico
         fields = ('id', 'usuario', 'telefono', 'horario',)
+
+class MedicoEnTurnoSerializer(serializers.ModelSerializer):
+    """
+    Respuesta de la busqueda
+    """
+    medico =MedicoSerializer()
+    en_habitacion = serializers.CharField()
+    entrada = serializers.CharField()
+    salida = serializers.CharField()
+    estado = serializers.CharField()
+    def validate(self, data):
+        pass
+
+    class Meta:
+        model = MedicoEnTurno
+        fields = ('medico', 'en_habitacion', 'entrada', 'salida', 'estado',)

@@ -21,6 +21,27 @@ class EspecialidadViewSet(viewsets.ModelViewSet):
     queryset = Especialidad.objects.all()
     serializer_class = EspecialidadSerializer
 
+class GetMedicosEnTurnos(APIView):
+    def post(self, request, format=None):
+        """
+        """
+        fecha = request.data['fecha']
+        if fecha == '':
+            return Response("Se debe enviar una fecha.")
+        try:
+
+            doctoresEnTurno = MedicoEnTurno.objects.filter(entrada__gte= fecha+"T0:00:00.001Z").order_by("id")
+        except MedicoEnTurno.DoesNotExist:
+            doctoresEnTurno = None
+
+        if doctoresEnTurno is not None:
+            serializers_doctores = MedicoEnTurnoSerializer(doctoresEnTurno, many=True, context={'request': request})
+            return Response(serializers_doctores.data)
+        else:
+            return Response({"_apiResponse_Busqueda_por": fecha, "_valido": False, "error": "No se encontró ningún resultado" })
+
+
+
 class PermissionViewSet(viewsets.ModelViewSet):
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
@@ -66,6 +87,8 @@ class ValidarToken(APIView):
         :param format:
         return: Bool
         """
+        if request.data['token'] == "":
+            return Response("Se debe enviar el token.")
         estado = False
         try:
             token = Token.objects.get(key= request.data['token'])
@@ -81,6 +104,8 @@ class GetMedicosPorEspecialidad(APIView):
     def post(self, request, format=None):
         """
         """
+        if request.data['especialidad'] =="":
+            return Response("Se debe enviar la especialidad.")
         especialidad_a_buscar = request.data['especialidad']
         try:
             doctores = Medico.objects.filter(especialidad= especialidad_a_buscar).order_by("id")
@@ -88,7 +113,7 @@ class GetMedicosPorEspecialidad(APIView):
             doctores = None
 
         if doctores is not None:
-            serializers_doctores = DoctorPorEspecialidadSerializer(doctores, many=True)
+            serializers_doctores = DoctorPorEspecialidadSerializer(doctores, many=True, context={'request': request})
             return Response(serializers_doctores.data)
         else:
             return Response({"_apiResponse_Busqueda_por": especialidad_a_buscar, "_valido": False, "error": "No se encontró ningún resultado" })
@@ -111,6 +136,8 @@ class GetAUsuarioPorUsernameOEmail(APIView):
               pytype: UsernameSerializer
 
         """
+        if request.data['user'] == "":
+            return Response("Se debe enviar un usuario.")
         usuario_a_buscar = request.data['user']
         try:
             email = Usuario.objects.get(email = usuario_a_buscar)
