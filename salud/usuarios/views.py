@@ -108,12 +108,14 @@ class GetMedicosPorEspecialidad(APIView):
             return Response("Se debe enviar la especialidad.")
         especialidad_a_buscar = request.data['especialidad']
         try:
-            doctores = Medico.objects.filter(especialidad= especialidad_a_buscar).order_by("id")
+            especialidad = Especialidad.objects.filter(especialidad= especialidad_a_buscar)
+
+            doctores = Medico.objects.filter(especialidad= especialidad).order_by("id")
         except Medico.DoesNotExist:
             doctores = None
 
         if doctores is not None:
-            serializers_doctores = DoctorPorEspecialidadSerializer(doctores, many=True, context={'request': request})
+            serializers_doctores = MedicoSerializer(doctores, many=True, context={'request': request})
             return Response(serializers_doctores.data)
         else:
             return Response({"_apiResponse_Busqueda_por": especialidad_a_buscar, "_valido": False, "error": "No se encontró ningún resultado" })

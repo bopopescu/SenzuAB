@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1edf6560-fd9d-4990-ace4-28785657d416" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/salud/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/salud/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usuarios/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usuarios/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios/views.py" afterDir="false" />
     </list>
@@ -40,7 +38,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="3934" />
+          <entry key="py" value="3981" />
           <entry key="txt" value="4" />
           <entry key="yaml" value="20" />
         </counts>
@@ -48,7 +46,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="3934" />
+          <entry key="Python" value="3981" />
           <entry key="YAML" value="20" />
         </counts>
       </usages-collector>
@@ -73,13 +71,13 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/usuarios/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55">
-              <caret line="120" column="37" selection-start-line="120" selection-start-column="6" selection-end-line="120" selection-end-column="37" />
+            <state relative-caret-position="191">
+              <caret line="92" column="62" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="62" />
               <folding>
-                <marker date="1543700466893" expanded="true" signature="579:580" ph="..." />
+                <marker date="1543701122803" expanded="true" signature="579:580" ph="..." />
               </folding>
             </state>
           </provider>
@@ -97,13 +95,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/usuarios/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="115" column="116" selection-start-line="115" selection-start-column="116" selection-end-line="115" selection-end-column="116" />
+            <state relative-caret-position="292">
+              <caret line="117" column="46" lean-forward="true" selection-start-line="117" selection-start-column="46" selection-end-line="117" selection-end-column="46" />
               <folding>
-                <marker date="1543700492312" expanded="true" signature="772:1556" ph="..." />
+                <marker date="1543701039015" expanded="true" signature="772:1556" ph="..." />
               </folding>
             </state>
           </provider>
@@ -161,7 +159,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CustomUserManager</find>
       <find>BooleanField</find>
       <find>consultasmedicas_citas</find>
       <find>consultasmedicas</find>
@@ -191,6 +188,7 @@
       <find>obtener_tiempo_entre_citasobtener_tiempo_entre_citas</find>
       <find>se_puede_utilizar_la_habitacion</find>
       <find>defaul</find>
+      <find>DoctorPorEspecialidadSerializer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -221,8 +219,8 @@
         <option value="$PROJECT_DIR$/usuarios/admin.py" />
         <option value="$PROJECT_DIR$/usuarios/models.py" />
         <option value="$PROJECT_DIR$/salud/urls.py" />
-        <option value="$PROJECT_DIR$/usuarios/serializers.py" />
         <option value="$PROJECT_DIR$/usuarios/views.py" />
+        <option value="$PROJECT_DIR$/usuarios/serializers.py" />
       </list>
     </option>
   </component>
@@ -326,18 +324,18 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18030183" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18030183" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32956153" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32956153" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.28712872" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.28429985" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.28429985" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32956153" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -565,22 +563,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/usuarios/serializers.py">
+    <entry file="file://$PROJECT_DIR$/usuarios/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="120" column="37" selection-start-line="120" selection-start-column="6" selection-end-line="120" selection-end-column="37" />
+        <state relative-caret-position="292">
+          <caret line="117" column="46" lean-forward="true" selection-start-line="117" selection-start-column="46" selection-end-line="117" selection-end-column="46" />
           <folding>
-            <marker date="1543700466893" expanded="true" signature="579:580" ph="..." />
+            <marker date="1543701039015" expanded="true" signature="772:1556" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/usuarios/views.py">
+    <entry file="file://$PROJECT_DIR$/usuarios/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="115" column="116" selection-start-line="115" selection-start-column="116" selection-end-line="115" selection-end-column="116" />
+        <state relative-caret-position="191">
+          <caret line="92" column="62" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="62" />
           <folding>
-            <marker date="1543700492312" expanded="true" signature="772:1556" ph="..." />
+            <marker date="1543701122803" expanded="true" signature="579:580" ph="..." />
           </folding>
         </state>
       </provider>

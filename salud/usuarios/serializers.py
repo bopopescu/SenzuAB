@@ -118,19 +118,6 @@ class UserApiSerializer(serializers.HyperlinkedModelSerializer):
         'is_admin', 'groups', 'user_permissions', 'image_de_perfil',
         )
 
-class DoctorPorEspecialidadSerializer(serializers.HyperlinkedModelSerializer):
-    """
-    Respuesta de la busqueda
-    """
-    usuario =MedicoSerializer()
-    telefono = serializers.CharField()
-    horario = serializers.CharField()
-    def validate(self, data):
-        pass
-
-    class Meta:
-        model = Medico
-        fields = ('id', 'usuario', 'telefono', 'horario',)
 
 class MedicoEnTurnoSerializer(serializers.ModelSerializer):
     """
