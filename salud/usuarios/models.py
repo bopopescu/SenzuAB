@@ -125,3 +125,18 @@ class MedicoEnTurno(models.Model):
         verbose_name_plural = "Medicos en turno"
         ordering = ('medico',)
 
+    def se_puede_utilizar_la_habitacion(self, habitacion_consultada):
+        if (habitacion_consultada == ""):
+            raise ValueError("No se envio la habitacion para verificar si esta utilizada.")
+
+        medico_en_la_habitacion = MedicoEnTurno.objects.filter( habitacion_consultada = self.en_habitacion )
+        if medico_en_la_habitacion:
+            if medico_en_la_habitacion.count() == 0:
+                return True
+            else:
+                return False
+
+    def save(self, *args, **kwargs):
+        if not self.se_puede_utilizar_la_habitacion(self, self.en_habitacion):
+            raise ValueError("La habitacion ya esta en uso."+ str(self.en_habitacion))
+        super(MedicoEnTurno,self).save(*args,**kwargs)

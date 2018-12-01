@@ -216,5 +216,25 @@ TIEMPO_ENTRE_CITAS = 1200
 #
 #
 #
+LOGGING2 = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/ubuntu/salud/out.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
