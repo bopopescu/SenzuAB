@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-=fw0r2$_v%u&l_!p4typ9sx1*xea45h%)a)jime0f5rib^0+k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ADMINS = (
     ('Alexis Batista', 'alexis05batista@gmail.com'),
@@ -223,7 +223,7 @@ LOGGING2 = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/home/ubuntu/salud/out.log',
+            'filename': '/home/ubuntu/outSalud.log',
         },
     },
     'loggers': {
